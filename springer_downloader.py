@@ -18,23 +18,26 @@ class SpringerDownloader:
         if not rename:
             rename = file_name
         save_path = os.path.abspath(os.path.join(save_path, rename))
-        print("[wget]   downloading from {}".format(url))
-        start = time.time()
-        size = 0
-        response = requests.get(url, stream=True)
-        chunk_size = 10240
-        content_size = int(response.headers["content-length"])
-        if response.status_code == 200:
-            print("[wget]   file size: %.2f MB" %(content_size / 1024 / 1024))
-            with codecs.open(save_path, "wb") as f:
-                for data in response.iter_content(chunk_size=chunk_size):
-                    f.write(data)
-                    size += len(data)
-                    print("\r"+"[wget]   %s%.2f%%"
-                          %(">"*int(size*50/content_size), float(size/content_size*100)), end="")
-        end = time.time()
-        print("\n"+"[wget]   complete! cost: %.2fs."%(end-start))
-        print("[wget]   save at: %s\n" %save_path)
+        try:
+            print("[wget]   downloading from {}".format(url))
+            start = time.time()
+            size = 0
+            response = requests.get(url, stream=True)
+            chunk_size = 10240
+            content_size = int(response.headers["content-length"])
+            if response.status_code == 200:
+                print("[wget]   file size: %.2f MB" %(content_size / 1024 / 1024))
+                with codecs.open(save_path, "wb") as f:
+                    for data in response.iter_content(chunk_size=chunk_size):
+                        f.write(data)
+                        size += len(data)
+                        print("\r"+"[wget]   %s%.2f%%"
+                              %(">"*int(size*50/content_size), float(size/content_size*100)), end="")
+            end = time.time()
+            print("\n"+"[wget]   complete! cost: %.2fs."%(end-start))
+            print("[wget]   save at: %s\n" %save_path)
+        except Exception:
+            print("[wget]   failed to download from {}, this book is not free.".format(url))
         
     def mkdir(self, file_dir):
         file_dir = os.path.abspath(os.path.join(self.current_path, file_dir))
