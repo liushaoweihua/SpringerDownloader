@@ -13,6 +13,10 @@ Springer Nature Books 的总经理 Niels Peter Thomas 在评论时说。"随着�
 所有书目和下载连接:
 https://resource-cms.springernature.com/springer-cms/rest/v1/content/17858272/data/v3
 
-## 使用
+## 直接使用
 1. 先安装依赖项：pip install -r requirements.txt -i https://pypi.douban.com/simple
 2. 下载：python springer_downloader.py
+
+## Linux后台下载
+1. 先安装依赖项：pip install -r requirements.txt -i https://pypi.douban.com/simple
+2. 下载：bash download.sh
