@@ -8,7 +8,7 @@ import pandas as pd
 class SpringerDownloader:
     
     def __init__(self):
-        self.df = [[i[0], i[1].split(";")[0], i[2]] for i in pd.read_excel("free_english_textbook.xlsx")[["Book Title", "Author", "Subject Classification", "OpenURL"]].values.tolist()]
+        self.df = [[i[0], i[1], i[2].split(";")[0], i[3]] for i in pd.read_excel("free_english_textbook.xlsx")[["Book Title", "Author", "Subject Classification", "OpenURL"]].values.tolist()]
         self.current_path = os.getcwd()
     
     def wget(self, url, save_path=None, rename=None):
