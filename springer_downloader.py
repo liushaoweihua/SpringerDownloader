@@ -23,7 +23,7 @@ class SpringerDownloader:
         size = 0
         response = requests.get(url, stream=True)
         if response.headers.get("content-length") is not None:
-            chunk_size = 10240
+            chunk_size = 128
             content_size = int(response.headers["content-length"])
             if not self.check_if_exists(os.path.join(save_path, rename), content_size):
                 if response.status_code == 200:
