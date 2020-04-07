@@ -27,7 +27,7 @@ class SpringerDownloader:
         if response.headers.get("content-length") is not None:
             chunk_size = 128
             content_size = int(response.headers["content-length"])
-            if not self.check_if_exists(os.path.join(save_path, rename), content_size):
+            if not self.check_if_exists(save_path, content_size):
                 if response.status_code == 200:
                     logging.info("[wget]   file size: %.2f MB" %(content_size / 1024 / 1024))
                     with codecs.open(save_path, "wb") as f:
