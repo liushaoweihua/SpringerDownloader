@@ -58,6 +58,7 @@ class SpringerDownloader:
         for _, i in enumerate(self.df):
             logging.info("Downloading 【{}】. \nCurrent #books: {}, total #books: {}".format(i[0], _ + 1, len(self.df)))
             file_name = i[0] + "|" + i[1] + ".pdf"
+            file_name.replace("/", "_")
             classification_dir = os.path.abspath(os.path.join(self.current_path, i[2]))
             if not os.path.exists(classification_dir):
                 self.mkdir(classification_dir)
